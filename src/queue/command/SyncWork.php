@@ -17,7 +17,7 @@ use think\console\input\Option;
 use think\console\Output;
 use think\Hook;
 use think\queue\Job;
-use think\queue\Worker;
+use think\queue\SyncWorker;
 use Exception;
 use Throwable;
 use think\Cache;
@@ -35,7 +35,7 @@ class SyncWork extends Command
 
     protected function initialize(Input $input, Output $output)
     {
-        $this->worker = new Worker();
+        $this->worker = new SyncWorker();
     }
 
     protected function configure()

@@ -16,7 +16,7 @@ use think\console\Input;
 use think\console\input\Argument;
 use think\console\input\Option;
 use think\console\Output;
-use think\Queue;
+use think\SyncQueue;
 use think\Url;
 
 class SyncSubscribe extends Command
@@ -39,7 +39,7 @@ class SyncSubscribe extends Command
             $url = Url::build($url);
         }
 
-        Queue::subscribe($input->getArgument('name'), $url, $input->getArgument('queue'), $input->getOption('option'));
+        SyncQueue::subscribe($input->getArgument('name'), $url, $input->getArgument('queue'), $input->getOption('option'));
 
         $output->write('<info>Queue subscriber added:</info> <comment>' . $input->getArgument('url') . '</comment>');
     }

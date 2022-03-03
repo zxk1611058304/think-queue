@@ -15,11 +15,11 @@ use think\console\Command;
 use think\console\Input;
 use think\console\input\Option;
 use think\console\Output;
-use think\queue\Listener;
+use think\queue\SyncListener;
 
 class SyncListen extends Command
 {
-    /** @var  Listener */
+    /** @var  SyncListener */
     protected $listener;
 
     public function configure()
@@ -36,7 +36,7 @@ class SyncListen extends Command
 
     public function initialize(Input $input, Output $output)
     {
-        $this->listener = new Listener($this->findCommandPath());
+        $this->listener = new SyncListener($this->findCommandPath());
         $this->listener->setSleep($input->getOption('sleep'));
         $this->listener->setMaxTries($input->getOption('tries'));
 
